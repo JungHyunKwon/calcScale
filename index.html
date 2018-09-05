@@ -5,15 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 	<title>calcScale</title>
-	<script src="js/calcScale.min.js"></script>
-	<script>
-		//transform scale로 123px이 500px이 되려면?
-		console.log(calcScale(500, 123));
-
-		//transform scale로 500px이 123px이 되려면?
-		console.log(calcScale(123, 500));
-	</script>
+	<script src="js/calcScale.js"></script>
 </head>
 <body>
+<h1>calcScale</h1>
+<ul>
+	<li><label for="from">원본 크기</label> : <input type="text" id="from" /></li>
+	<li><label for="to">변환 크기</label> : <input type="text" id="to" /></li>
+</ul>
+<button type="button" class="transform">변환</button>
+<ul>
+	<li>transform:scale(<span class="scale">1</span>);</li>
+	<li>원본크기와 변환 크기의 차이 : <span class="distance">0</span></li>
+</ul>
+<script>
+	var from = document.getElementById('from'),
+		to = document.getElementById('to'),
+		scale = document.querySelector('.scale'),
+		distance = document.querySelector('.distance');
+	
+	from.value = '';
+	to.value = '';
+
+	document.querySelector('.transform').addEventListener('click', (event) => {
+		var result = calcScale(from.value, to.value);
+
+		scale.innerText = result.scale;
+		distance.innerText = result.distance;
+	}, false);
+</script>
 </body>
 </html>
