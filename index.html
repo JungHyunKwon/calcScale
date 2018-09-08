@@ -14,7 +14,7 @@
 				$scale = $('.scale'),
 				$distance = $('.distance');
 
-			$from.add($to).val('').on('keyup', function(event) {
+			$from.add($to).val('').on('change', function(event) {
 				var result = calcScale($from.val(), $to.val());
 
 				$scale.text(result.scale);
