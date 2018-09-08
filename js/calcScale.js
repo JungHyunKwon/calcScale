@@ -28,7 +28,7 @@ try {
 				result.scale /= from / to;
 
 				//NaN 또는 Infinity일때
-				if(isNaN(result.scale) || result.scale.toString() === 'Infinity') {
+				if(!result.scale || result.scale.toString() === 'Infinity') {
 					result.scale = to;
 				}
 
