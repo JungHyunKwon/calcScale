@@ -16,7 +16,7 @@ try {
 		window.calcScale = function(from, to) {
 			var result = {
 				scale : 1,
-				distance : 0
+				space : 0
 			};
 			
 			//숫자형 변환
@@ -34,9 +34,9 @@ try {
 
 				//from이 초과일때
 				if(from > to) {
-					result.distance = -(from - to);
+					result.space = -((from / 2 + to) / 2);
 				}else{
-					result.distance = to - from;
+					result.space = (to - from) / 2;
 				}
 			}
 

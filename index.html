@@ -6,19 +6,37 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 	<title>calcScale</title>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script src="js/calcScale.js"></script>
+	<script src="js/calcScale.min.js"></script>
 	<script>
 		$(function() {
-			var $from = $('#from'),
-				$to = $('#to'),
+			var $iconWidth = $('#icon_width'),
+				$iconHeight = $('#icon_height'),
+				$convertWidth = $('#convert_width'),
+				$convertHeight = $('#convert_height'),
 				$scale = $('.scale'),
-				$distance = $('.distance');
+				$space = $('.space');
 
-			$from.add($to).val('').on('keyup', function(event) {
-				var result = calcScale($from.val(), $to.val());
+			$iconWidth.add($iconHeight).add($convertWidth).add($convertHeight).val('').on('keyup', function(event) {
+				var horizontal = calcScale($iconWidth.val(), $convertWidth.val()),
+					vertical = calcScale($iconHeight.val(), $convertHeight.val()),
+					scale = horizontal.scale + ', ' + vertical.scale;
 
-				$scale.text(result.scale);
-				$distance.text(result.distance);
+				//가로 스케일과 세로 스케일이 같을때
+				if(horizontal.scale === vertical.scale) {
+					scale = horizontal.scale;
+				}
+
+				$scale.text(scale);
+
+				if(horizontal.space) {
+					horizontal.space += 'px';
+				}
+
+				if(vertical.space) {
+					vertical.space += 'px';
+				}
+
+				$space.text(vertical.space + ' ' + horizontal.space);
 			});
 		});
 	</script>
@@ -26,13 +44,16 @@
 <body>
 <h1>calcScale</h1>
 <ul>
-	<li><label for="from">원본크기</label> : <input type="text" id="from" /></li>
-	<li><label for="to">변환크기</label> : <input type="text" id="to" /></li>
+	<li><label for="icon_width">아이콘 넓이</label> : <input type="text" id="icon_width" /></li>
+	<li><label for="icon_height">아이콘 높이</label> : <input type="text" id="icon_height" /></li>
+	<li><label for="convert_width">변환 넓이</label> : <input type="text" id="convert_width" /></li>
+	<li><label for="convert_height">변환 높이</label> : <input type="text" id="convert_height" /></li>
 </ul>
 <h2>결과</h2>
 <ul>
 	<li>transform:scale(<span class="scale">1</span>);</li>
-	<li>원본크기와 변환크기의 차이 : <span class="distance">0</span></li>
+	<li>여백 : <span class="space">0</span>;</li>
 </ul>
+<p>transform-origin 속성의 center 기준으로 한 계산입니다.</p>
 </body>
 </html>
