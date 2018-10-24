@@ -11,13 +11,10 @@ try {
 		 * @since 2018-09-05
 		 * @param {number} from
 		 * @param {number} to
-		 * @return {object}
+		 * @return {number}
 		 */
 		window.calcScale = function(from, to) {
-			var result = {
-				scale : 1,
-				space : 0
-			};
+			var result = 1;
 			
 			//숫자형 변환
 			from = parseFloat(from, 10);
@@ -25,18 +22,11 @@ try {
 
 			//from이 0이상이면서 to가 0이상일때
 			if(from >= 0 && to >= 0) {
-				result.scale /= from / to;
+				result /= from / to;
 
 				//NaN 또는 Infinity일때
-				if(!result.scale || result.scale.toString() === 'Infinity') {
-					result.scale = to;
-				}
-
-				//from이 초과일때
-				if(from > to) {
-					result.space = -((from / 2 + to) / 2);
-				}else{
-					result.space = (to - from) / 2;
+				if(!result || result.toString() === 'Infinity') {
+					result = to;
 				}
 			}
 

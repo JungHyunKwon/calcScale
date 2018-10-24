@@ -13,30 +13,19 @@
 				$iconHeight = $('#icon_height'),
 				$convertWidth = $('#convert_width'),
 				$convertHeight = $('#convert_height'),
-				$scale = $('.scale'),
-				$space = $('.space');
+				$scale = $('.scale');
 
 			$iconWidth.add($iconHeight).add($convertWidth).add($convertHeight).val('').on('keyup', function(event) {
 				var horizontal = calcScale($iconWidth.val(), $convertWidth.val()),
 					vertical = calcScale($iconHeight.val(), $convertHeight.val()),
-					scale = horizontal.scale + ', ' + vertical.scale;
+					scale = horizontal + ', ' + vertical;
 
 				//가로 스케일과 세로 스케일이 같을때
-				if(horizontal.scale === vertical.scale) {
-					scale = horizontal.scale;
+				if(horizontal === vertical) {
+					scale = horizontal;
 				}
 
 				$scale.text(scale);
-
-				if(horizontal.space) {
-					horizontal.space += 'px';
-				}
-
-				if(vertical.space) {
-					vertical.space += 'px';
-				}
-
-				$space.text(vertical.space + ' ' + horizontal.space);
 			});
 		});
 	</script>
@@ -50,10 +39,6 @@
 	<li><label for="convert_height">변환 높이</label> : <input type="text" id="convert_height" /></li>
 </ul>
 <h2>결과</h2>
-<ul>
-	<li>transform:scale(<span class="scale">1</span>);</li>
-	<li>여백 : <span class="space">0</span>;</li>
-</ul>
-<p>transform-origin 속성의 center 기준으로 한 계산입니다.</p>
+<p>transform:scale(<span class="scale">1</span>);</p>
 </body>
 </html>
