@@ -20,11 +20,11 @@ try {
 			from = parseFloat(from, 10);
 			to = parseFloat(to, 10);
 
-			//from이 0이상이면서 to가 0이상일때
+			//from이 0 이상이면서 to가 0 이상일 때
 			if(from >= 0 && to >= 0) {
 				result /= from / to;
 
-				//NaN 또는 Infinity일때
+				//NaN 또는 Infinity일 때
 				if(!result || result.toString() === 'Infinity') {
 					result = to;
 				}
