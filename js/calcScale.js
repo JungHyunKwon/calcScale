@@ -7,6 +7,7 @@ try {
 		'use strict';
 
 		/**
+		 * @name calcScale
 		 * @since 2018-09-05
 		 * @param {number} from
 		 * @param {number} to
