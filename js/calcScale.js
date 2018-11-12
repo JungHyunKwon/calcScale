@@ -7,7 +7,6 @@ try {
 		'use strict';
 
 		/**
-		 * @name 확대 계산
 		 * @since 2018-09-05
 		 * @param {number} from
 		 * @param {number} to
