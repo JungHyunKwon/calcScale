@@ -16,8 +16,8 @@
 				$scale = $('.scale');
 
 			$iconWidth.add($iconHeight).add($convertWidth).add($convertHeight).on('keyup', function(event) {
-				var horizontal = calcScale($iconWidth.val(), $convertWidth.val()),
-					vertical = calcScale($iconHeight.val(), $convertHeight.val()),
+				var horizontal = calcScale(parseFloat($iconWidth.val(), 10), parseFloat($convertWidth.val(), 10)),
+					vertical = calcScale(parseFloat($iconHeight.val(), 10), parseFloat($convertHeight.val(), 10)),
 					scale = horizontal + ', ' + vertical;
 
 				//가로 스케일과 세로 스케일이 같을 때
@@ -26,9 +26,7 @@
 				}
 
 				$scale.text(scale);
-			}).each(function(index, element) {
-				$(element).triggerHandler('keyup');
-			});
+			}).triggerHandler('keyup');
 		});
 	</script>
 </head>
