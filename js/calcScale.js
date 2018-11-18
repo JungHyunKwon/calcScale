@@ -14,7 +14,7 @@ try {
 		 * @return {number}
 		 */
 		window.calcScale = function(from, to) {
-			var result = 1;
+			var result = 0;
 			
 			//숫자형으로 변환
 			from = parseFloat(from, 10);
