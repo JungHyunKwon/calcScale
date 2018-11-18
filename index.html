@@ -15,7 +15,7 @@
 				$convertHeight = $('#convert_height'),
 				$scale = $('.scale');
 
-			$iconWidth.add($iconHeight).add($convertWidth).add($convertHeight).val('').on('keyup', function(event) {
+			$iconWidth.add($iconHeight).add($convertWidth).add($convertHeight).on('keyup', function(event) {
 				var horizontal = calcScale($iconWidth.val(), $convertWidth.val()),
 					vertical = calcScale($iconHeight.val(), $convertHeight.val()),
 					scale = horizontal + ', ' + vertical;
@@ -26,6 +26,8 @@
 				}
 
 				$scale.text(scale);
+			}).each(function(index, element) {
+				$(element).triggerHandler('keyup');
 			});
 		});
 	</script>

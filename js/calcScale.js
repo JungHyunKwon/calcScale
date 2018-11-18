@@ -3,7 +3,7 @@
  * @version 1.0.0
  */
 try {
-	(function() {
+	(function(isFinite) {
 		'use strict';
 
 		/**
@@ -16,23 +16,32 @@ try {
 		window.calcScale = function(from, to) {
 			var result = 1;
 			
-			//숫자형 변환
+			//숫자형으로 변환
 			from = parseFloat(from, 10);
 			to = parseFloat(to, 10);
 
-			//from이 0 이상이면서 to가 0 이상일 때
-			if(from >= 0 && to >= 0) {
+			//Infinity가 아니면서 0 이상일 때
+			if(isFinite(from) && from >= 0 && isFinite(to) && to >= 0) {
 				result /= from / to;
 
 				//NaN 또는 Infinity일 때
-				if(!result || result.toString() === 'Infinity') {
+				if(!result || !isFinite(result)) {
 					result = to;
+				}
+
+				var splitResult = result.toString().split('.'),
+					splitResult1 = splitResult[1];
+				
+				//소수점이 있을 때
+				if(splitResult1) {
+					splitResult[1] = splitResult1.substring(0, 2);
+					result = parseFloat(splitResult.join('.'), 10);
 				}
 			}
 
 			return result;
 		};
-	})();
+	})(window.isFinite);
 }catch(e) {
 	console.error(e);
 }
