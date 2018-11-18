@@ -3,7 +3,7 @@
  * @version 1.0.0
  */
 try {
-	(function(isFinite) {
+	(function(isNaN, isFinite) {
 		'use strict';
 
 		/**
@@ -25,7 +25,7 @@ try {
 				result /= from / to;
 
 				//NaN 또는 Infinity일 때
-				if(!result || !isFinite(result)) {
+				if(isNaN(result) || !isFinite(result)) {
 					result = to;
 				}
 
@@ -41,7 +41,7 @@ try {
 
 			return result;
 		};
-	})(window.isFinite);
+	})(window.isNaN, window.isFinite);
 }catch(e) {
 	console.error(e);
 }
