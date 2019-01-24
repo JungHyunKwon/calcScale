@@ -17,7 +17,7 @@ try {
 		}
 
 		/**
-		 * @name toFixed
+		 * @name 소숫점 절사
 		 * @param {number} value
 		 * @param {number} decimal
 		 * @return {number}
