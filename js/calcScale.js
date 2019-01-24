@@ -7,12 +7,12 @@ try {
 		'use strict';
 
 		/**
-		 * @name 정수 확인
+		 * @name 숫자 확인
 		 * @since 2017-12-06
 		 * @param {*} value
 		 * @return {boolean}
 		 */
-		function _isInt(value) {
+		function _isNumber(value) {
 			return typeof value === 'number' && !isNaN(value) && isFinite(value);
 		}
 
@@ -27,11 +27,11 @@ try {
 			var result = NaN;
 			
 			//값이 정수일 때
-			if(_isInt(value)) {
+			if(_isNumber(value)) {
 				result = value;
 				
 				//소수가 정수일 때
-				if(_isInt(decimal)) {
+				if(_isNumber(decimal)) {
 					var splitValue = value.toString().split('.'),
 						splitValue1 = splitValue[1];
 					
@@ -57,11 +57,11 @@ try {
 			var result = 0;
 
 			//정수이면서 0 이상일 때
-			if(_isInt(from) && from >= 0 && _isInt(to) && to >= 0) {
+			if(_isNumber(from) && from >= 0 && _isNumber(to) && to >= 0) {
 				result = 1 / (from / to);
 
 				//정수가 아닐 때
-				if(!_isInt(result)) {
+				if(!_isNumber(result)) {
 					result = to;
 				}
 
