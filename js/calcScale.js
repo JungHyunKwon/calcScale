@@ -12,7 +12,7 @@ try {
 		 * @param {*} value
 		 * @return {boolean}
 		 */
-		function _isNumber(value) {
+		function _isNumeric(value) {
 			return typeof value === 'number' && !isNaN(value) && isFinite(value);
 		}
 
@@ -27,11 +27,11 @@ try {
 			var result = NaN;
 			
 			//값이 숫자일 때
-			if(_isNumber(value)) {
+			if(_isNumeric(value)) {
 				result = value;
 				
 				//소수가 정수일 때
-				if(_isNumber(decimal)) {
+				if(_isNumeric(decimal)) {
 					var splitValue = value.toString().split('.'),
 						splitValue1 = splitValue[1];
 					
@@ -57,11 +57,11 @@ try {
 			var result = 0;
 
 			//숫자이면서 0 이상일 때
-			if(_isNumber(from) && from >= 0 && _isNumber(to) && to >= 0) {
+			if(_isNumeric(from) && from >= 0 && _isNumeric(to) && to >= 0) {
 				result = 1 / (from / to);
 
 				//숫자가 아닐 때
-				if(!_isNumber(result)) {
+				if(!_isNumeric(result)) {
 					result = to;
 				}
 
