@@ -25,7 +25,7 @@ try {
 		 */
 		function _toFixed(value, decimal) {
 			var result = NaN;
-			
+
 			//값이 숫자일 때
 			if(_isNumeric(value)) {
 				result = value;
@@ -33,11 +33,11 @@ try {
 				//소수가 정수일 때
 				if(_isNumeric(decimal)) {
 					var splitValue = value.toString().split('.'),
-						splitValue1 = splitValue[1];
+						firstOfSplitValue = splitValue[1];
 					
 					//소숫점이 있을 때
-					if(splitValue1) {
-						splitValue[1] = splitValue1.substring(0, decimal);
+					if(firstOfSplitValue) {
+						splitValue[1] = firstOfSplitValue.substring(0, decimal);
 						result = parseFloat(splitValue.join('.'), 10);
 					}
 				}
