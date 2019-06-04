@@ -12,7 +12,7 @@ try {
 		 * @param {*} value
 		 * @return {boolean}
 		 */
-		function isNumeric(value) {
+		function _isNumeric(value) {
 			return typeof value === 'number' && !isNaN(value) && isFinite(value);
 		}
 
@@ -23,15 +23,15 @@ try {
 		 * @return {number}
 		 * @since 2018-07-13
 		 */
-		function toFixed(value, decimal) {
+		function _toFixed(value, decimal) {
 			var result = NaN;
 
 			//값이 숫자일 때
-			if(isNumeric(value)) {
+			if(_isNumeric(value)) {
 				result = value;
 				
 				//소수가 정수일 때
-				if(isNumeric(decimal)) {
+				if(_isNumeric(decimal)) {
 					var splitValue = value.toString().split('.'),
 						firstOfSplitValue = splitValue[1];
 					
@@ -57,15 +57,15 @@ try {
 			var result = 0;
 
 			//숫자이면서 0 이상일 때
-			if(isNumeric(from) && from >= 0 && isNumeric(to) && to >= 0) {
+			if(_isNumeric(from) && from >= 0 && _isNumeric(to) && to >= 0) {
 				result = 1 / (from / to);
 
 				//숫자가 아닐 때
-				if(!isNumeric(result)) {
+				if(!_isNumeric(result)) {
 					result = to;
 				}
 
-				result = toFixed(result, 2);
+				result = _toFixed(result, 2);
 			}
 
 			return result;
