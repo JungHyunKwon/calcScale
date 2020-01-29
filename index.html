@@ -9,23 +9,18 @@
 	<script src="js/calcScale.min.js"></script>
 	<script>
 		$(function() {
-			var $iconWidth = $('#icon_width'),
-				$iconHeight = $('#icon_height'),
-				$convertWidth = $('#convert_width'),
-				$convertHeight = $('#convert_height'),
-				$scale = $('.scale');
+			var $beforeWidth = $('#before_width'),
+				$beforeHeight = $('#before_height'),
+				$afterWidth = $('#after_width'),
+				$afterHeight = $('#after_height'),
+				$result = $('#result');
 
-			$iconWidth.add($iconHeight).add($convertWidth).add($convertHeight).on('keyup', function(event) {
-				var horizontal = calcScale(parseFloat($iconWidth.val(), 10), parseFloat($convertWidth.val(), 10)),
-					vertical = calcScale(parseFloat($iconHeight.val(), 10), parseFloat($convertHeight.val(), 10)),
-					scale = horizontal + ', ' + vertical;
+			$beforeWidth.add($beforeHeight).add($afterWidth).add($afterHeight).on('keyup', function(event) {
+				var horizontal = calcScale(parseFloat($beforeWidth.val()), parseFloat($afterWidth.val())),
+					vertical = calcScale(parseFloat($beforeHeight.val()), parseFloat($afterHeight.val()));
 
-				//가로 스케일과 세로 스케일이 같을 때
-				if(horizontal === vertical) {
-					scale = horizontal;
-				}
-
-				$scale.text(scale);
+				//가로와 세로가 같을 때
+				$result.text((horizontal === vertical) ? horizontal : horizontal + ', ' + vertical);
 			}).triggerHandler('keyup');
 		});
 	</script>
@@ -33,12 +28,12 @@
 <body>
 <h1>calcScale</h1>
 <ul>
-	<li><label for="icon_width">아이콘 넓이</label> : <input type="text" id="icon_width" /></li>
-	<li><label for="icon_height">아이콘 높이</label> : <input type="text" id="icon_height" /></li>
-	<li><label for="convert_width">변환 넓이</label> : <input type="text" id="convert_width" /></li>
-	<li><label for="convert_height">변환 높이</label> : <input type="text" id="convert_height" /></li>
+	<li><label>전 넓이 : <input type="text" id="before_width" /></label></li>
+	<li><label>전 높이 : <input type="text" id="before_height" /></label></li>
+	<li><label>후 넓이 : <input type="text" id="after_width" /></label></li>
+	<li><label>후 높이 : <input type="text" id="after_height" /></label></li>
 </ul>
 <h2>결과</h2>
-<p>transform:scale(<span class="scale">0</span>);</p>
+<p>transform:scale(<span id="result">0</span>);</p>
 </body>
 </html>
